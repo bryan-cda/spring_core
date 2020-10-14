@@ -1,12 +1,21 @@
 package br.com.sales.configuration;
 
+import br.com.sales.annotations.Development;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-@Configuration
+@Development
 public class AppConfiguration {
-    @Bean(name = "app-name")
-    public String appName(){
-        return "Sales in Rio";
+
+    @Value("${application.name}")
+    String appName;
+
+    @Bean
+    public CommandLineRunner profileManager(){
+        return args -> {
+            System.out.println("APP NAME: ".concat(appName).toUpperCase());
+            System.out.println("RUNNING IN DEVELOPMENT MODE!");
+        };
     }
 }

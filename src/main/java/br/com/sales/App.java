@@ -3,6 +3,7 @@ package br.com.sales;
 import br.com.sales.model.Sales;
 import br.com.sales.service.SalesService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -16,11 +17,18 @@ import java.time.LocalDate;
 @SpringBootApplication
 @RestController
 public class App {
-    private final String applicationName;
+    @Value("${application.name}")
+    private String applicationName;
+
+    @Value("${application.product}")
+    private String applicationProduct;
+
+    @Value("${application.price}")
+    private String applicationPrice;
+
     private SalesService salesService;
 
-    public App(@Qualifier("app-name") String applicationName, SalesService salesService) {
-        this.applicationName = applicationName;
+    public App(SalesService salesService) {
         this.salesService = salesService;
     }
 
@@ -31,7 +39,7 @@ public class App {
 
     @GetMapping("/sales")
     public ResponseEntity listSales(){
-        return new ResponseEntity(salesService.listSales(new Sales("Armário", 600.00f, LocalDate.now(), applicationName)),HttpStatus.CREATED);
+        return new ResponseEntity(salesService.listSales(new Sales(applicationProduct, Float.valueOf(applicationPrice), LocalDate.now(), applicationName)),HttpStatus.CREATED);
     }
 
     public static void main(String[] args) {
