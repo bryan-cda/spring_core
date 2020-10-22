@@ -1,8 +1,9 @@
 package br.com.sales.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Sales {
+public class Sales implements Serializable {
     private String product;
     private Float price;
     private LocalDate date;

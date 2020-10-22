@@ -1,6 +1,5 @@
 package br.com.sales.context;
 
-import br.com.sales.model.Sales;
 import br.com.sales.repository.SalesRepository;
 import br.com.sales.service.SalesService;
 import org.springframework.context.annotation.Bean;
