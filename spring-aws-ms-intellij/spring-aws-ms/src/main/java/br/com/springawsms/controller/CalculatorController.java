@@ -20,28 +20,24 @@ public class CalculatorController {
     }
 
     @GetMapping(value = "/sum/{numberOne}/{numberTwo}")
-    public Double sum(@PathVariable ("numberOne") String numberOne,  @PathVariable ("numberTwo") String numberTwo) {
-        return convertToDouble(numberOne)+ convertToDouble(numberTwo);
+    public Double sum(@PathVariable ("numberOne") String numberOne,  @PathVariable ("numberTwo") String numberTwo){
+       if(!isNumeric(numberOne) || !isNumeric(numberTwo)){
+           throw new NumberFormatException(String.format("Incorrect number passed: %s, %s", numberOne, numberTwo));
+       }
+        double sum = convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return sum;
     }
-
-
 
     public Double convertToDouble(String number){
         if(Objects.isNull(number)) return 0D;
-
         number.replace(",", ".");
-
         if(isNumeric(number)) return Double.parseDouble(number);
-
         return 0D;
     }
 
-
     public Boolean isNumeric(String number){
         if(Objects.isNull(number)) return false;
-
         number.replace(",",".");
-
         return  number.matches("[-+]?[0-9]*\\.?[0-9]+");
     }
 }
