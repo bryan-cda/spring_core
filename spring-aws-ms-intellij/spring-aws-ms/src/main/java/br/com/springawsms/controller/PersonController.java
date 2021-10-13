@@ -2,13 +2,9 @@ package br.com.springawsms.controller;
 
 import br.com.springawsms.model.Person;
 import br.com.springawsms.service.PersonService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/person")
@@ -21,12 +17,27 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Person> findById(@PathVariable ("id") Long id){
+    public Person findById(@PathVariable ("id") Long id){
         return personService.findById(id);
     }
 
     @GetMapping
     public List<Person> findAll(){
         return personService.findAll();
+    }
+
+    @PostMapping
+    public Person add(@RequestBody Person person){
+        return personService.create(person);
+    }
+
+    @PutMapping
+    public void updatePerson(@RequestBody Person person){
+        personService.update(person);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable ("id") Long id){
+        personService.delete(id);
     }
 }
