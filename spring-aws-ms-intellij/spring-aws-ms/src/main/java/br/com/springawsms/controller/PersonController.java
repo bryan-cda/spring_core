@@ -20,12 +20,12 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("/{id}")
     public Optional<Person> findById(@PathVariable ("id") Long id){
         return personService.findById(id);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping
     public List<Person> findAll(){
         return personService.findAll();
     }

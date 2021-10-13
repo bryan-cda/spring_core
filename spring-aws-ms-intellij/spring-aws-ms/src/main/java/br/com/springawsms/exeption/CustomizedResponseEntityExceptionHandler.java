@@ -34,4 +34,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 .build();
         return new ResponseEntity<>(responseException, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(PersonNotFoundException.class)
+    public ResponseEntity<ResponseException> handlePersonNotFoundException(PersonNotFoundException exception, WebRequest request){
+        ResponseException responseException = ResponseException.builder()
+                .timestamp(new Date())
+                .message(exception.getMessage())
+                .details(request.getDescription(false))
+                .build();
+
+        return new ResponseEntity<>(responseException, HttpStatus.BAD_REQUEST);
+    }
 }

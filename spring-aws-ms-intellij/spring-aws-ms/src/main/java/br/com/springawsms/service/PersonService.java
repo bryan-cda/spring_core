@@ -1,5 +1,6 @@
 package br.com.springawsms.service;
 
+import br.com.springawsms.exeption.PersonNotFoundException;
 import br.com.springawsms.model.Person;
 import br.com.springawsms.repository.PersonRepository;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,12 @@ public class PersonService {
     }
 
     public Optional<Person> findById(Long id){
-        return personRepository.findById(id);
+        Optional<Person> person = personRepository.findById(id);
+
+        if(!person.isPresent()){
+            throw new PersonNotFoundException(String.format("Person not found for id %s", id));
+        }
+        return person;
     }
 
     public List<Person> findAll(){
