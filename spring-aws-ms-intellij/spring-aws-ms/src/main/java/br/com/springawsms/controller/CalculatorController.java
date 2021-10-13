@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("v1/greeting")
+@RequestMapping("v1/calculator")
 public class CalculatorController {
 
     private final NumberConverter converter;
