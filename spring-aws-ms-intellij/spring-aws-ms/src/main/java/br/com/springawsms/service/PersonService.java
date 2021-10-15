@@ -21,7 +21,7 @@ public class PersonService {
 
     public Person create(Person person){
         log.info(String.format("Trying to save person %s", person));
-        return  personRepository.save(person);
+        return personRepository.save(person);
     }
 
     public void update(Person person){
@@ -30,7 +30,6 @@ public class PersonService {
         personFromDatabase.setAddress(person.getAddress());
         personFromDatabase.setGender(person.getGender());
         personRepository.save(personFromDatabase);
-
     }
 
     public Person findById(Long id){
@@ -47,6 +46,11 @@ public class PersonService {
     }
 
     public void delete(Long id) {
-        personRepository.deleteById(id);
+        log.info(String.format(String.format("Trying to delete person for id %s", id)));
+
+        Person person = personRepository
+                .findById(id).orElseThrow(() ->
+                        new PersonNotFoundException(String.format("Person not found for id %s", id)));
+        personRepository.deleteById(person.getId());
     }
 }
