@@ -50,6 +50,10 @@
 			<artifactId>dozer-core</artifactId>
 			<version>6.5.2</version>
 		</dependency>
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

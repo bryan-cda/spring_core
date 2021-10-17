@@ -2,6 +2,9 @@ package br.com.springawsms.controller;
 
 import br.com.springawsms.model.Person;
 import br.com.springawsms.service.PersonService;
+import br.com.springawsms.vo.PersonVO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,18 +25,18 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<Person> findAll(){
-        return personService.findAll();
+    public ResponseEntity<List<PersonVO>> findAll(){
+        return new ResponseEntity<>(personService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public Person add(@RequestBody Person person){
-        return personService.create(person);
+    public ResponseEntity<PersonVO> add(@RequestBody Person person){
+        return new ResponseEntity<>(personService.create(person), HttpStatus.CREATED);
     }
 
     @PutMapping
-    public void updatePerson(@RequestBody Person person){
-        personService.update(person);
+    public void updatePerson(@RequestBody PersonVO personVO){
+        personService.update(personVO);
     }
 
     @DeleteMapping("/{id}")

@@ -1,13 +1,14 @@
 package br.com.springawsms.service;
 
+import br.com.springawsms.converter.DozerConverter;
 import br.com.springawsms.exeption.PersonNotFoundException;
 import br.com.springawsms.model.Person;
 import br.com.springawsms.repository.PersonRepository;
+import br.com.springawsms.vo.PersonVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -19,30 +20,31 @@ public class PersonService {
         this.personRepository = personRepository;
     }
 
-    public Person create(Person person){
+    public PersonVO create(Person person){
         log.info(String.format("Trying to save person %s", person));
-        return personRepository.save(person);
+        return DozerConverter.parseObject(personRepository.save(person), PersonVO.class);
     }
 
-    public void update(Person person){
-        Person personFromDatabase = personRepository.findById(person.getId()).orElseThrow(() -> new PersonNotFoundException(String.format("Person not found %s not found", person)));
-        personFromDatabase.setFirstName(person.getFirstName());
-        personFromDatabase.setAddress(person.getAddress());
-        personFromDatabase.setGender(person.getGender());
+    public void update(PersonVO personVO){
+        Person personFromDatabase = personRepository
+                .findById(personVO.getId()).orElseThrow(() ->
+                        new PersonNotFoundException(
+                                String.format("Person not found %s not found", personVO)));
+        personFromDatabase.setFirstName(personVO.getFirstName());
+        personFromDatabase.setAddress(personVO.getAddress());
+        personFromDatabase.setGender(personVO.getGender());
         personRepository.save(personFromDatabase);
     }
 
     public Person findById(Long id){
-        Optional<Person> person = personRepository.findById(id);
-
         log.info(String.format("Searching for person with id %s", id));
 
         return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(String.format("Person not found for id %s", id)));
     }
 
-    public List<Person> findAll(){
+    public List<PersonVO> findAll(){
         log.info(String.format("Searching for all persons"));
-        return personRepository.findAll();
+        return DozerConverter.parseListObjects(personRepository.findAll(), PersonVO.class);
     }
 
     public void delete(Long id) {
