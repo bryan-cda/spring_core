@@ -1,0 +1,17 @@
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/spring-aws?useTimezone=true&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=admin
+
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5InnoDBDialect
+
+# JPA Settings
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.show-sql=false
+
+# Flyway Configs
+
+flyway.url=jdbc:mysql://localhost:3306/
+flyway.schemas=spring-aws
+flyway.user=root
+flyway.password=admin
