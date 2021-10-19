@@ -22,7 +22,7 @@ public class DozerConverterTest {
         this.vo = PersonVO.builder()
                 .firstName("Foo")
                 .lastName("Bar")
-                .id(1L)
+                .key(1L)
                 .gender("M")
                 .address("Green Street")
                 .build();

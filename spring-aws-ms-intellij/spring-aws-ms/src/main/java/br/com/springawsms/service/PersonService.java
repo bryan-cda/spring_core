@@ -27,7 +27,7 @@ public class PersonService {
 
     public void update(PersonVO personVO){
         Person personFromDatabase = personRepository
-                .findById(personVO.getId()).orElseThrow(() ->
+                .findById(personVO.getKey()).orElseThrow(() ->
                         new PersonNotFoundException(
                                 String.format("Person not found %s not found", personVO)));
         personFromDatabase.setFirstName(personVO.getFirstName());

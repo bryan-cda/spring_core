@@ -16,3 +16,5 @@ spring:
     schemas: spring-aws
     user: root
     password: admin
+  jackson:
+    default-property-inclusion: non_null
