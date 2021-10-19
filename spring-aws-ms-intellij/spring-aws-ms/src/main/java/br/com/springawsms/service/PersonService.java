@@ -25,15 +25,16 @@ public class PersonService {
         return DozerConverter.parseObject(personRepository.save(person), PersonVO.class);
     }
 
-    public void update(PersonVO personVO){
+    public Person update(PersonVO personVO){
         Person personFromDatabase = personRepository
                 .findById(personVO.getKey()).orElseThrow(() ->
                         new PersonNotFoundException(
                                 String.format("Person not found %s not found", personVO)));
         personFromDatabase.setFirstName(personVO.getFirstName());
+        personFromDatabase.setLastName(personVO.getLastName());
         personFromDatabase.setAddress(personVO.getAddress());
         personFromDatabase.setGender(personVO.getGender());
-        personRepository.save(personFromDatabase);
+        return personRepository.save(personFromDatabase);
     }
 
     public Person findById(Long id){

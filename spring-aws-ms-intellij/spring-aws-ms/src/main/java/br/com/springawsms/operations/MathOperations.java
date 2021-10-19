@@ -17,7 +17,7 @@ public class MathOperations {
     }
 
     public Double division(Double numberOne, Double numberTwo){
-        return numberOne * numberTwo;
+        return numberOne / numberTwo;
     }
 
     public Double squareRoot(Double number){

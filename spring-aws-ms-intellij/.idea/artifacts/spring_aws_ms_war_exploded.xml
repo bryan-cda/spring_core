@@ -92,6 +92,20 @@
           <element id="library" level="project" name="Maven: net.minidev:json-smart:2.4.7" />
           <element id="library" level="project" name="Maven: net.minidev:accessors-smart:2.4.7" />
           <element id="library" level="project" name="Maven: org.ow2.asm:asm:9.1" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-ui:1.2.15" />
+          <element id="library" level="project" name="Maven: org.webjars:swagger-ui:3.24.0" />
+          <element id="library" level="project" name="Maven: org.webjars:webjars-locator:0.37" />
+          <element id="library" level="project" name="Maven: org.webjars:webjars-locator-core:0.46" />
+          <element id="library" level="project" name="Maven: io.github.classgraph:classgraph:4.8.69" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-webmvc-core:1.2.15" />
+          <element id="library" level="project" name="Maven: org.springdoc:springdoc-openapi-common:1.2.15" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-models:2.1.0" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-annotations:2.1.0" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-integration:2.1.0" />
+          <element id="library" level="project" name="Maven: io.swagger.core.v3:swagger-core:2.1.0" />
+          <element id="library" level="project" name="Maven: javax.xml.bind:jaxb-api:2.3.1" />
+          <element id="library" level="project" name="Maven: javax.activation:javax.activation-api:1.2.0" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
         </element>
       </element>
       <element id="directory" name="META-INF">

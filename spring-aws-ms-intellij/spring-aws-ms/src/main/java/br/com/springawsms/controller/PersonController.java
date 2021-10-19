@@ -36,16 +36,17 @@ public class PersonController {
         return new ResponseEntity<>(persons, HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(consumes = {"application/json", "application/xml"}, produces = {"application/json", "application/xml"})
     public ResponseEntity<PersonVO> add(@RequestBody Person person){
         PersonVO personVO = personService.create(person);
         personVO.add(linkTo(methodOn(PersonController.class).add(person)).withSelfRel());
         return new ResponseEntity<>(personVO, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public void updatePerson(@RequestBody PersonVO personVO){
-        personService.update(personVO);
+    @PutMapping(consumes = {"application/json", "application/xml"}, produces = {"application/json", "application/xml"})
+    public ResponseEntity<PersonVO> updatePerson(@RequestBody PersonVO personVO){
+        Person update = personService.update(personVO);
+        return new ResponseEntity(DozerConverter.parseObject(update, PersonVO.class), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

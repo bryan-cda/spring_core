@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="spring-aws-ms" target="11" />
+      <module name="spring-aws-ms" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
