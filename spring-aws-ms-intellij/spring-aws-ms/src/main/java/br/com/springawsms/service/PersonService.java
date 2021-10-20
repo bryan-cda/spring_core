@@ -1,7 +1,7 @@
 package br.com.springawsms.service;
 
 import br.com.springawsms.converter.DozerConverter;
-import br.com.springawsms.exeption.PersonNotFoundException;
+import br.com.springawsms.exeption.EntityNotFoundException;
 import br.com.springawsms.model.Person;
 import br.com.springawsms.repository.PersonRepository;
 import br.com.springawsms.vo.PersonVO;
@@ -28,7 +28,7 @@ public class PersonService {
     public Person update(PersonVO personVO){
         Person personFromDatabase = personRepository
                 .findById(personVO.getKey()).orElseThrow(() ->
-                        new PersonNotFoundException(
+                        new EntityNotFoundException(
                                 String.format("Person not found %s not found", personVO)));
         personFromDatabase.setFirstName(personVO.getFirstName());
         personFromDatabase.setLastName(personVO.getLastName());
@@ -40,7 +40,7 @@ public class PersonService {
     public Person findById(Long id){
         log.info(String.format("Searching for person with id %s", id));
 
-        return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(String.format("Person not found for id %s", id)));
+        return personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Person not found for id %s", id)));
     }
 
     public List<PersonVO> findAll(){
@@ -53,7 +53,7 @@ public class PersonService {
 
         Person person = personRepository
                 .findById(id).orElseThrow(() ->
-                        new PersonNotFoundException(String.format("Person not found for id %s", id)));
+                        new EntityNotFoundException(String.format("Person not found for id %s", id)));
         personRepository.deleteById(person.getId());
     }
 }
