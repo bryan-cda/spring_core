@@ -1,9 +1,12 @@
 package br.com.springawsms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -24,8 +27,8 @@ public class Book {
     @Column(name = "author", nullable = false, length = 200)
     private String author;
 
-    @Temporal(TemporalType.DATE)
-    private Date launchDate;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private LocalDate launchDate;
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;

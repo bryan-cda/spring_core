@@ -1,13 +1,16 @@
 package br.com.springawsms.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.hateoas.RepresentationModel;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -25,7 +28,8 @@ public class BookVO extends RepresentationModel<BookVO> {
 
     private String author;
 
-    private Date launchDate;
+    @JsonFormat(pattern="dd-MM-yyyy")
+    private LocalDate launchDate;
 
     private BigDecimal price;
 }
