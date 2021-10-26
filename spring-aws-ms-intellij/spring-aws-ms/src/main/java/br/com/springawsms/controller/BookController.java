@@ -22,6 +22,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("v1/book")
 @ApiResponse(description = "Book Endpoint")
+@CrossOrigin
 public class BookController {
     private final BookService bookService;
 

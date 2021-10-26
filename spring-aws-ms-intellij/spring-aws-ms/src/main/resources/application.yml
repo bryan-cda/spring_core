@@ -18,3 +18,4 @@ spring:
     password: admin
   jackson:
     default-property-inclusion: non_null
+
