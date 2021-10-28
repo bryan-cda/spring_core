@@ -45,4 +45,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity<>(responseException, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidJWTAuthenticationException.class)
+    public ResponseEntity<ResponseException> handleInvalidJWTAuthenticationException(Exception exception, WebRequest request){
+        ResponseException responseException = ResponseException.builder()
+                .timestamp(new Date())
+                .message(exception.getMessage())
+                .details(request.getDescription(false))
+                .build();
+
+        return new ResponseEntity<>(responseException, HttpStatus.BAD_REQUEST);
+    }
 }

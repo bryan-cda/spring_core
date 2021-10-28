@@ -111,6 +111,7 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.5.2" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:5.5.2" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.5.2" />
+          <element id="library" level="project" name="Maven: io.jsonwebtoken:jjwt:0.9.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">
