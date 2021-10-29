@@ -1,12 +1,11 @@
 package br.com.springawsms.vo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
 @Data
-@EqualsAndHashCode
-public class AccountCredentialsVO implements Serializable {
+@NoArgsConstructor
+public class AccountCredentialsVO  {
     private String userName;
     private String password;
 }

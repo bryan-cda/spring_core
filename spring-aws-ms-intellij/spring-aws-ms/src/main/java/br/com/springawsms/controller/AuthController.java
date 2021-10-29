@@ -31,11 +31,9 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
         this.tokenProvider = tokenProvider;
         this.repository = repository;
-
-
     }
 
-    @PostMapping("/signin")
+    @PostMapping(value = "/signin", produces = {"application/json"})
     public ResponseEntity<Map<Object, Object>> signin(@RequestBody AccountCredentialsVO credentials){
         try{
             var username = credentials.getUserName();
