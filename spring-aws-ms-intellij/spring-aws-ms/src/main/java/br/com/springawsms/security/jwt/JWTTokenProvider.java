@@ -1,4 +1,4 @@
-package br.com.springawsms.security;
+package br.com.springawsms.security.jwt;
 
 import br.com.springawsms.exeption.InvalidJWTAuthenticationException;
 import io.jsonwebtoken.Claims;
