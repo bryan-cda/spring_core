@@ -1,4 +1,4 @@
-package br.com.springawsms.security.jwt;
+package br.com.springawsms.jwt;
 
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;

@@ -1,4 +1,4 @@
-package br.com.springawsms.security.jwt;
+package br.com.springawsms.jwt;
 
 import lombok.SneakyThrows;
 import org.springframework.security.core.Authentication;
