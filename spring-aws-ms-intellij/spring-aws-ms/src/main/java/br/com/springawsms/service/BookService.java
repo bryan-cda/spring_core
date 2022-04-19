@@ -3,10 +3,8 @@ package br.com.springawsms.service;
 import br.com.springawsms.converter.DozerConverter;
 import br.com.springawsms.exeption.EntityNotFoundException;
 import br.com.springawsms.model.Book;
-import br.com.springawsms.model.Person;
 import br.com.springawsms.repository.BookRepository;
 import br.com.springawsms.vo.BookVO;
-import br.com.springawsms.vo.PersonVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +55,4 @@ public class BookService {
                             new EntityNotFoundException(String.format("Book not found for id %s", id)));
         bookRepository.deleteById(book.getId());
     }
-
-
 }

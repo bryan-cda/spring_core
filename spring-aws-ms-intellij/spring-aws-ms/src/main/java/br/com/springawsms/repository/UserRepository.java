@@ -1,13 +1,11 @@
 package br.com.springawsms.repository;
 
-import br.com.springawsms.model.User;
+import br.com.springawsms.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import javax.persistence.Entity;
-
-public interface UserRepository extends JpaRepository<User,Long> {
-    @Query("SELECT u from User u where u.userName =: user")
-    User findByUsername(@Param("userName" ) String userName);
+public interface UserRepository extends JpaRepository<Users,Long> {
+    @Query("SELECT u from Users u where u.userName =: user")
+    Users findByUsername(@Param("userName" ) String userName);
 }

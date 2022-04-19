@@ -20,7 +20,6 @@ public class Permission implements GrantedAuthority, Serializable {
 
     private String description;
 
-
     @Override
     public String getAuthority() {
         return this.description;

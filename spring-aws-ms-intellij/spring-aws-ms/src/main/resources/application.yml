@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/spring-aws?useTimezone=true&serverTimezone=UTC
-    username: root
-    password: admin
+    url: jdbc:mysql://spring-aws.cghl9uwmfcrs.us-east-1.rds.amazonaws.com/spring_aws?useTimezone=true&serverTimezone=UTC
+    username: bryan_cda
+    password: q1w2e3q1w2e3
   jpa:
     properties:
       hibernate:
@@ -12,10 +12,10 @@ spring:
       ddl-auto: update
     show-sql: true
   flyway:
-    url: jdbc:mysql://localhost:3306/
-    schemas: spring-aws
-    user: root
-    password: admin
+    url: jdbc:mysql://spring-aws.cghl9uwmfcrs.us-east-1.rds.amazonaws.com
+    schemas: spring_aws
+    user: bryan_cda
+    password: q1w2e3q1w2e3
   jackson:
     default-property-inclusion: non_null
 
