@@ -6,11 +6,8 @@ import br.com.springawsms.service.BookService;
 import br.com.springawsms.vo.BookVO;
 import br.com.springawsms.vo.PersonVO;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jdk.jfr.ContentType;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +17,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("v1/book")
+@RequestMapping("/api/v1/book")
 @ApiResponse(description = "Book Endpoint")
 @CrossOrigin
 public class BookController {
