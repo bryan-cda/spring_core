@@ -56,7 +56,7 @@ public class AuthController {
             model.put("token", token);
             return ok(model);
         } catch (AuthenticationException e) {
-            throw new BadCredentialsException("Invalid username/password supplied!");
+            throw new BadCredentialsException("Invalid username/password supplied! Please retype the operation.");
         }
     }
 }
