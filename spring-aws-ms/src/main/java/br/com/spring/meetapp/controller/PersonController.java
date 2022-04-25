@@ -10,6 +10,8 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +51,15 @@ public class PersonController {
         List<PersonVO> persons = personService.findAll();
         persons.stream().forEach(person -> person.add((linkTo(methodOn(PersonController.class).findById(person.getKey())).withSelfRel())));
         return new ResponseEntity<>(persons, HttpStatus.OK);
+    }
+
+    @GetMapping("find-all")
+    public ResponseEntity<List<Person>> findAll(@RequestParam (value = "page", defaultValue = "0") int page,
+                                @RequestParam (value = "limit", defaultValue = "20")int limit){
+        Pageable pageable = PageRequest.of(page, limit);
+
+        List<Person> persons = personService.findAll(pageable);
+        return new ResponseEntity(persons, HttpStatus.OK);
     }
 
     @PostMapping(consumes = {"application/json", "application/xml"}, produces = {"application/json", "application/xml"})

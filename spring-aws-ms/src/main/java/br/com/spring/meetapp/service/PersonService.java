@@ -6,6 +6,7 @@ import br.com.spring.meetapp.repository.PersonRepository;
 import br.com.spring.meetapp.model.Person;
 import br.com.spring.meetapp.vo.PersonVO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class PersonService {
     public List<PersonVO> findAll(){
         log.info(String.format("Searching for all persons"));
         return DozerConverter.parseListObjects(personRepository.findAll(), PersonVO.class);
+    }
+
+    public List<Person> findAll(Pageable pageable){
+        var pages = personRepository.findAll(pageable).getContent();
+        log.info(String.format("Searching for all persons"));
+        return pages;
     }
 
     public void delete(Long id) {
