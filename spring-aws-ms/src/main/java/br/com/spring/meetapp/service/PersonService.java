@@ -49,10 +49,11 @@ public class PersonService {
         return DozerConverter.parseListObjects(personRepository.findAll(), PersonVO.class);
     }
 
-    public List<Person> findAll(Pageable pageable){
+    public List<PersonVO> findAll(Pageable pageable){
         var pages = personRepository.findAll(pageable).getContent();
         log.info(String.format("Searching for all persons"));
-        return pages;
+        return DozerConverter.parseListObjects(personRepository.findAll(pageable).getContent(), PersonVO.class);
+
     }
 
     public void delete(Long id) {

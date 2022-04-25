@@ -54,11 +54,11 @@ public class PersonController {
     }
 
     @GetMapping("find-all")
-    public ResponseEntity<List<Person>> findAll(@RequestParam (value = "page", defaultValue = "0") int page,
+    public ResponseEntity<List<PersonVO>> findAll(@RequestParam (value = "page", defaultValue = "0") int page,
                                 @RequestParam (value = "limit", defaultValue = "20")int limit){
         Pageable pageable = PageRequest.of(page, limit);
 
-        List<Person> persons = personService.findAll(pageable);
+        List<PersonVO> persons = personService.findAll(pageable);
         return new ResponseEntity(persons, HttpStatus.OK);
     }
 
