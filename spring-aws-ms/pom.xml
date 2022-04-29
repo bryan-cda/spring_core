@@ -70,8 +70,8 @@
 		</dependency>
 		<!-- Hateoas starter -->
 		<dependency>
-			<groupId>org.springframework.hateoas</groupId>
-			<artifactId>spring-hateoas</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 		<!-- Swagger Spring doc ui -->
 		<dependency>
