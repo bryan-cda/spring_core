@@ -4,7 +4,7 @@ import br.com.spring.meetapp.converter.DozerConverter;
 import br.com.spring.meetapp.exeption.EntityNotFoundException;
 import br.com.spring.meetapp.repository.PersonRepository;
 import br.com.spring.meetapp.model.Person;
-import br.com.spring.meetapp.vo.PersonVO;
+import br.com.spring.meetapp.vo.request.PersonVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

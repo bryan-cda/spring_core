@@ -4,7 +4,7 @@ import br.com.spring.meetapp.converter.DozerConverter;
 import br.com.spring.meetapp.model.Book;
 import br.com.spring.meetapp.model.Person;
 import br.com.spring.meetapp.service.PersonService;
-import br.com.spring.meetapp.vo.PersonVO;
+import br.com.spring.meetapp.vo.request.PersonVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,4 +1,4 @@
-package br.com.spring.meetapp.vo;
+package br.com.spring.meetapp.vo.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

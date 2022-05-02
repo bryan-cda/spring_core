@@ -2,7 +2,7 @@ package br.com.spring.meetapp.controller;
 
 import br.com.spring.meetapp.repository.UserRepository;
 import br.com.spring.meetapp.jwt.JWTTokenProvider;
-import br.com.spring.meetapp.vo.AccountCredentialsVO;
+import br.com.spring.meetapp.vo.request.AccountCredentialsVO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;

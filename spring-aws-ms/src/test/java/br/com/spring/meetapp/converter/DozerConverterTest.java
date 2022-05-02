@@ -1,7 +1,7 @@
 package br.com.spring.meetapp.converter;
 
 import br.com.spring.meetapp.model.Person;
-import br.com.spring.meetapp.vo.PersonVO;
+import br.com.spring.meetapp.vo.request.PersonVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

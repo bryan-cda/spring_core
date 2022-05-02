@@ -4,7 +4,7 @@ import br.com.spring.meetapp.converter.DozerConverter;
 import br.com.spring.meetapp.exeption.EntityNotFoundException;
 import br.com.spring.meetapp.model.Book;
 import br.com.spring.meetapp.repository.BookRepository;
-import br.com.spring.meetapp.vo.BookVO;
+import br.com.spring.meetapp.vo.request.BookVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
