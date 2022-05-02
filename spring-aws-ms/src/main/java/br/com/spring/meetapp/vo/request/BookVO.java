@@ -1,4 +1,4 @@
-package br.com.spring.meetapp.vo;
+package br.com.spring.meetapp.vo.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
