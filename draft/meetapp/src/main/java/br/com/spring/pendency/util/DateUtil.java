@@ -8,6 +8,6 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class DateUtil {
     public String getCurrentLocalDateTime(LocalDateTime localDateTime){
-        return DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss").format(localDateTime);
+        return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(localDateTime);
     }
 }
