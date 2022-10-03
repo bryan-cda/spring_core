@@ -1,28 +1,21 @@
-package br.com.celtic.bank.domain;
+package com.celtic.banking.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name = "client")
-public class BankClient {
-    @JsonIgnore
+@Data
+@Builder
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @JsonProperty("UUID")
-    private String uuid;
 
     @JsonProperty("first_name")
     private String firstName;
