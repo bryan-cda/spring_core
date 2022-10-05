@@ -1,42 +1,44 @@
 package com.celtic.banking.controller;
 
 
+import com.celtic.banking.mapping.ClientMapper;
 import com.celtic.banking.request.ClientRequest;
-import com.celtic.banking.response.ClientBalanceResponse;
+import com.celtic.banking.request.ClientResponse;
 import com.celtic.banking.service.ClientService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("celtic-banking/clients")
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ClientController {
     private final ClientService clientService;
 
     @GetMapping
-    public ResponseEntity<ClientBalanceResponse> listClients(){
+    public ResponseEntity<List<ClientResponse>> listClients(){
         return ResponseEntity.ok(clientService.listClients());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientBalanceResponse> findClientById(@PathVariable Long id){
-        return ResponseEntity.ok(clientService.findClientById(id));
+    public ResponseEntity<ClientResponse> findClientById(@PathVariable Long id){
+         return ResponseEntity.ok(clientService.findClientById(id));
     }
 
     @PostMapping
-    public void addClient(@RequestBody ClientRequest clientRequest){
-        clientService.createClient(clientRequest);
+    public  ClientResponse createClient(@RequestBody ClientRequest clientRequest){
+        return clientService.createClient(ClientMapper.INSTANCE.mapToClient(clientRequest));
     }
 
     @DeleteMapping("/{id}")
-    public void closeAccount(@PathVariable Long id){
+    public void deleteClient(@PathVariable Long id){
         clientService.deleteClient(id);
     }
 
     @PutMapping
-    public ResponseEntity<ClientBalanceResponse> updateClientDataAccount(@RequestBody ClientRequest clientRequest){
-        //return clientService.updateClientDataAccount(clientRequest);
-        return null;
+    public ResponseEntity<ClientResponse> updateClientData(@RequestBody ClientRequest clientRequest){
+        return ResponseEntity.ok(clientService.updateClientData(clientRequest));
     }
 }
