@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
-		<org.mapstruct.version>1.5.2.Final</org.mapstruct.version>
+		<org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -51,9 +51,11 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${org.mapstruct.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -78,11 +80,9 @@
 							<artifactId>lombok</artifactId>
 							<version>1.18.24</version>
 						</path>
-						<!-- other annotation processors -->
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

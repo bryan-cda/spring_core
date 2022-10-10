@@ -9,5 +9,5 @@ import org.mapstruct.factory.Mappers;
 public abstract class ClientResponseMapper {
     public static final ClientResponseMapper INSTANCE = Mappers.getMapper(ClientResponseMapper.class);
 
-    public abstract ClientResponse matToClientResponse(Client client);
+    public abstract ClientResponse mapToClientResponse(Client client);
 }
