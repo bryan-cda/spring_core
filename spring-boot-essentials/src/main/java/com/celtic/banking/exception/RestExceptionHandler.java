@@ -1,7 +1,2 @@
-package com.celtic.banking.exception;
-
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-@RestControllerAdvice
-public class ExceptionHandler {
+package com.celtic.banking.exception;public class RestExceptionHandler {
 }
