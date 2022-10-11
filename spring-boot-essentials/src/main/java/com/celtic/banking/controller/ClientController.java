@@ -9,6 +9,7 @@ import com.celtic.banking.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,12 +39,13 @@ public class ClientController {
 
     @PostMapping
     public  ClientResponse createClient(@RequestBody @Valid ClientRequest clientRequest){
-        return clientService.createClient(ClientMapper.INSTANCE.mapToClient(clientRequest));
+        return clientService.createClient(clientRequest);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteClient(@PathVariable Long id){
+    public ResponseEntity deleteClient(@PathVariable Long id){
         clientService.deleteClient(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping

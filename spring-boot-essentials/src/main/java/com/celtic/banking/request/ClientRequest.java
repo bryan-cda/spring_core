@@ -1,10 +1,12 @@
 package com.celtic.banking.request;
 
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 
 @Data
+@Builder
 public class ClientRequest {
     private Long id;
     @NotEmpty(message = "The first name cannot be blank")

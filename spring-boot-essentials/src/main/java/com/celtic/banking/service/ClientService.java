@@ -44,8 +44,22 @@ public class ClientService {
         return ClientResponseMapper.INSTANCE.mapToClientResponse(client);
     }
 
-    public ClientResponse createClient(Client client) {
-        return ClientResponseMapper.INSTANCE.mapToClientResponse(clientRepository.save(client));
+    public ClientResponse createClient(ClientRequest clientRequest) {
+        Client clientSaved = Client
+                .builder()
+                .cpf(clientRequest.getCpf())
+                .firstName(clientRequest.getFirstName())
+                .lastName(clientRequest.getLastName())
+                .build();
+        Client saved = clientRepository.save(clientSaved);
+
+        return ClientResponse
+                .builder()
+                .id(saved.getId())
+                .firstName(saved.getFirstName())
+                .lastName(saved.getLastName())
+                .cpf(saved.getCpf())
+                .build();
     }
 
     public void deleteClient(Long id) {
@@ -58,9 +72,11 @@ public class ClientService {
         Client client = clientRepository.findById(clientRequest.getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found."));
 
-        clientRepository.deleteById(client.getId());
+        client.setCpf(clientRequest.getCpf());
+        client.setFirstName(clientRequest.getFirstName());
+        client.setLastName(clientRequest.getLastName());
 
-        return createClient(ClientMapper.INSTANCE.mapToClient(clientRequest));
+       return ClientResponseMapper.INSTANCE.mapToClientResponse(clientRepository.save(client));
     }
 
 
