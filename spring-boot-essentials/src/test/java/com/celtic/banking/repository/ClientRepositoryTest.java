@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
@@ -51,7 +53,6 @@ public class ClientRepositoryTest {
         assertThat(clientRepository.save(save).getCpf()).isEqualTo(createClient().getCpf());
     }
 
-
     @Test
     @DisplayName("Update Client test")
     public void givenExistingClient_whenUpdateData_thenUpdateClient(){
@@ -87,5 +88,25 @@ public class ClientRepositoryTest {
                 .lastName("Bar")
                 .cpf("000.000.000-00")
                 .build();
+    }
+
+    @Test
+    @DisplayName("Delete Client test")
+    public void givenAClientId_thenDeleteClientById_thenDelete(){
+        Client save = clientRepository.save(createClient());
+
+        Long idClient = save.getId();
+
+        assertThat(clientRepository.save(save)).isNotNull();
+
+        assertThat(clientRepository.save(save).getFirstName()).isEqualTo(createClient().getFirstName());
+
+        assertThat(clientRepository.save(save).getLastName()).isEqualTo(createClient().getLastName());
+
+        assertThat(clientRepository.save(save).getCpf()).isEqualTo(createClient().getCpf());
+
+        clientRepository.deleteById(save.getId());
+
+        assertThat(clientRepository.findById(idClient)).isEqualTo(Optional.empty());
     }
 }
