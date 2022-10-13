@@ -2,16 +2,20 @@ package com.celtic.banking.repository;
 
 import com.celtic.banking.domain.Client;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import javax.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @DataJpaTest
 @DisplayName("Repository Tests")
@@ -137,5 +141,20 @@ public class ClientRepositoryTest {
         clientRepository.deleteById(save.getId());
 
         assertThat(clientRepository.findById(idClient)).isEqualTo(Optional.empty());
+    }
+    @Test
+    @DisplayName("Throw ConstraintViolationException when save Client without first name")
+    public void givenAClientWithEmptyFirstName_whenSaveClient_thenThrowException(){
+        Client client = Client.builder().lastName("bar").cpf("000.000.000-00").build();
+        assertThatThrownBy(() -> this.clientRepository.save(client)).isInstanceOf(ConstraintViolationException.class);
+    }
+
+    @Test
+    @DisplayName("Throw ConstraintViolationException when save Client without last name")
+    public void givenAClientWithEmptyLastName_whenSaveClient_thenThrowException(){
+        Client client = Client.builder().lastName("bar").cpf("000.000.000-00").build();
+        Assertions.assertThrows(ConstraintViolationException.class, () ->{
+            clientRepository.save(client);
+        });
     }
 }
