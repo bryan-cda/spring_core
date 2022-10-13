@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -80,6 +81,15 @@ public class ClientRepositoryTest {
         assertThat(updatedClient.getCpf()).isNotEqualTo(createClient().getCpf());
     }
 
+    @Test
+    @DisplayName("Update Client test")
+    public void givenClients_whenFindAllClients_thenReturn(){
+        List<Client> findAllClients = clientRepository.saveAll(createClientList());
+
+        assertThat(findAllClients).isNotNull();
+        assertThat(findAllClients).size().isEqualTo(2);
+    }
+
     public Client createClient(){
         return Client
                 .builder()
@@ -88,6 +98,13 @@ public class ClientRepositoryTest {
                 .lastName("Bar")
                 .cpf("000.000.000-00")
                 .build();
+    }
+
+    public List<Client> createClientList(){
+        return List.of(
+                new Client(1L, "Foo", "Bar", "111.111.111-11"),
+                new Client(2L, "John", "Due", "000.000.000-00")
+        );
     }
 
     @Test
