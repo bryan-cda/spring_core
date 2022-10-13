@@ -1,6 +1,7 @@
 package com.celtic.banking.repository;
 
 import com.celtic.banking.domain.Client;
+import com.celtic.banking.util.ClientUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.ConstraintViolationException;
 import java.util.List;
@@ -28,7 +28,7 @@ public class ClientRepositoryTest {
     @Test
     @DisplayName("Find Client by id test")
     public void givenAClientId_whenFindById_thenReturnClient(){
-        Client savedClient = clientRepository.save(createClient());
+        Client savedClient = clientRepository.save(ClientUtil.createClient());
 
         Client clientFoundById = clientRepository.findById(savedClient.getId())
                 .orElseThrow(
@@ -47,29 +47,29 @@ public class ClientRepositoryTest {
     @Test
     @DisplayName("Creation Client test")
     public void givenNewClient_WhenCreate_ThenSave(){
-        Client save = clientRepository.save(createClient());
+        Client save = clientRepository.save(ClientUtil.createClient());
 
         assertThat(clientRepository.save(save)).isNotNull();
 
-        assertThat(clientRepository.save(save).getFirstName()).isEqualTo(createClient().getFirstName());
+        assertThat(clientRepository.save(save).getFirstName()).isEqualTo(ClientUtil.createClient().getFirstName());
 
-        assertThat(clientRepository.save(save).getLastName()).isEqualTo(createClient().getLastName());
+        assertThat(clientRepository.save(save).getLastName()).isEqualTo(ClientUtil.createClient().getLastName());
 
-        assertThat(clientRepository.save(save).getCpf()).isEqualTo(createClient().getCpf());
+        assertThat(clientRepository.save(save).getCpf()).isEqualTo(ClientUtil.createClient().getCpf());
     }
 
     @Test
     @DisplayName("Update Client test")
     public void givenExistingClient_whenUpdateData_thenUpdateClient(){
-        Client savedClient = clientRepository.save(createClient());
+        Client savedClient = clientRepository.save(ClientUtil.createClient());
 
         assertThat(clientRepository.save(savedClient)).isNotNull();
 
-        assertThat(clientRepository.save(savedClient).getFirstName()).isEqualTo(createClient().getFirstName());
+        assertThat(clientRepository.save(savedClient).getFirstName()).isEqualTo(ClientUtil.createClient().getFirstName());
 
-        assertThat(clientRepository.save(savedClient).getLastName()).isEqualTo(createClient().getLastName());
+        assertThat(clientRepository.save(savedClient).getLastName()).isEqualTo(ClientUtil.createClient().getLastName());
 
-        assertThat(clientRepository.save(savedClient).getCpf()).isEqualTo(createClient().getCpf());
+        assertThat(clientRepository.save(savedClient).getCpf()).isEqualTo(ClientUtil.createClient().getCpf());
 
 
         savedClient.setCpf("111.111.111-11");
@@ -78,26 +78,26 @@ public class ClientRepositoryTest {
 
         Client updatedClient = clientRepository.save(savedClient);
 
-        assertThat(updatedClient.getFirstName()).isNotEqualTo(createClient().getFirstName());
+        assertThat(updatedClient.getFirstName()).isNotEqualTo(ClientUtil.createClient().getFirstName());
 
-        assertThat(updatedClient.getLastName()).isNotEqualTo(createClient().getLastName());
+        assertThat(updatedClient.getLastName()).isNotEqualTo(ClientUtil.createClient().getLastName());
 
-        assertThat(updatedClient.getCpf()).isNotEqualTo(createClient().getCpf());
+        assertThat(updatedClient.getCpf()).isNotEqualTo(ClientUtil.createClient().getCpf());
     }
 
     @Test
     @DisplayName("Find all Clients test")
     public void givenClients_whenFindAllClients_thenReturn(){
-        List<Client> findAllClients = clientRepository.saveAll(createClientList());
+        List<Client> findAllClients = clientRepository.saveAll(ClientUtil.createClientList());
 
         assertThat(findAllClients).isNotNull();
         assertThat(findAllClients).size().isEqualTo(2);
     }
 
     @Test
-    @DisplayName("Find Client by first name")
+    @DisplayName("Find Client by first name test")
     public void givenAName_whenFindClientByName_thenReturn(){
-        clientRepository.saveAll(createClientList());
+        clientRepository.saveAll(ClientUtil.createClientList());
 
         Client foo = clientRepository.findByFirstName("Foo");
 
@@ -106,54 +106,45 @@ public class ClientRepositoryTest {
         assertThat(foo.getFirstName()).isEqualTo("Foo");
     }
 
-    public Client createClient(){
-        return Client
-                .builder()
-                .id(1L)
-                .firstName("Foo")
-                .lastName("Bar")
-                .cpf("000.000.000-00")
-                .build();
-    }
-
-    public List<Client> createClientList(){
-        return List.of(
-                new Client(1L, "Foo", "Bar", "111.111.111-11"),
-                new Client(2L, "John", "Due", "000.000.000-00")
-        );
-    }
-
     @Test
     @DisplayName("Delete Client test")
     public void givenAClientId_thenDeleteClientById_thenDelete(){
-        Client save = clientRepository.save(createClient());
+        Client save = clientRepository.save(ClientUtil.createClient());
 
         Long idClient = save.getId();
 
         assertThat(clientRepository.save(save)).isNotNull();
 
-        assertThat(clientRepository.save(save).getFirstName()).isEqualTo(createClient().getFirstName());
+        assertThat(clientRepository.save(save).getFirstName()).isEqualTo(ClientUtil.createClient().getFirstName());
 
-        assertThat(clientRepository.save(save).getLastName()).isEqualTo(createClient().getLastName());
+        assertThat(clientRepository.save(save).getLastName()).isEqualTo(ClientUtil.createClient().getLastName());
 
-        assertThat(clientRepository.save(save).getCpf()).isEqualTo(createClient().getCpf());
+        assertThat(clientRepository.save(save).getCpf()).isEqualTo(ClientUtil.createClient().getCpf());
 
         clientRepository.deleteById(save.getId());
 
         assertThat(clientRepository.findById(idClient)).isEqualTo(Optional.empty());
     }
     @Test
-    @DisplayName("Throw ConstraintViolationException when save Client without first name")
+    @DisplayName("Throw ConstraintViolationException when save Client without first name test")
     public void givenAClientWithEmptyFirstName_whenSaveClient_thenThrowException(){
         Client client = Client.builder().lastName("bar").cpf("000.000.000-00").build();
         assertThatThrownBy(() -> this.clientRepository.save(client)).isInstanceOf(ConstraintViolationException.class);
     }
 
     @Test
-    @DisplayName("Throw ConstraintViolationException when save Client without last name")
+    @DisplayName("Throw ConstraintViolationException when save Client without last name test")
     public void givenAClientWithEmptyLastName_whenSaveClient_thenThrowException(){
         Client client = Client.builder().lastName("bar").cpf("000.000.000-00").build();
         Assertions.assertThrows(ConstraintViolationException.class, () ->{
+            clientRepository.save(client);
+        });
+    }
+    @Test
+    @DisplayName("Throw ConstraintViolationException when save Client without CPF test")
+    public void givenAClientWithEmptyCPF_whenSaveClient_thenThrowException(){
+        Client client = Client.builder().firstName("foo").lastName("bar").build();
+        Assertions.assertThrows(ConstraintViolationException.class, () -> {
             clientRepository.save(client);
         });
     }

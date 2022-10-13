@@ -8,6 +8,7 @@ import com.celtic.banking.request.ClientRequest;
 import com.celtic.banking.request.ClientResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -25,17 +26,37 @@ public class ClientService {
 
     public List<ClientResponse> listClients() {
         List<Client> clients = clientRepository.findAll();
-        List<ClientResponse> allClients = new ArrayList<>();
+        List<ClientResponse> clientResponseList = new ArrayList<>();
 
         clients.forEach(client -> {
-            allClients.add(ClientResponseMapper.INSTANCE.mapToClientResponse(client));
+            ClientResponse response = ClientResponse.builder()
+                    .id(client.getId())
+                    .firstName(client.getFirstName())
+                    .lastName(client.getLastName())
+                    .cpf(client.getCpf())
+                    .build();
+
+            clientResponseList.add(response);
         });
-        return allClients;
+
+        return clientResponseList;
     }
 
-    public Page<Client> listClients(Pageable page) {
+    public Page<ClientResponse> listClients(Pageable page) {
         Page<Client> clients = clientRepository.findAll(page);
-        return clients;
+        List<ClientResponse> clientResponseList = new ArrayList<>();
+
+        clients.forEach(client -> {
+            ClientResponse response = ClientResponse
+                    .builder()
+                    .id(client.getId())
+                    .firstName(client.getFirstName())
+                    .lastName(client.getLastName())
+                    .cpf(client.getCpf())
+                    .build();
+            clientResponseList.add(response);
+        });
+        return new PageImpl<>(clientResponseList);
     }
 
     public ClientResponse findClientById(Long id){
@@ -76,7 +97,7 @@ public class ClientService {
         client.setFirstName(clientRequest.getFirstName());
         client.setLastName(clientRequest.getLastName());
 
-       return ClientResponseMapper.INSTANCE.mapToClientResponse(clientRepository.save(client));
+        return ClientResponseMapper.INSTANCE.mapToClientResponse(clientRepository.save(client));
     }
 
 
