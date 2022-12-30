@@ -1,7 +1,6 @@
 package com.celtic.banking.service;
 
 import com.celtic.banking.repository.ClientRepository;
-import com.celtic.banking.request.ClientResponse;
 import com.celtic.banking.util.ClientUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +15,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
@@ -28,11 +26,11 @@ class ClientServiceTest {
     @Mock
     private ClientRepository clientRepository;
 
-//    @BeforeEach
-//    public void setup(){
-//        BDDMockito.when(clientRepository.findAll()).thenReturn(ClientUtil.createClientList());
-//        BDDMockito.when(clientRepository.findAll(ArgumentMatchers.any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(ClientUtil.createClient())));
-//    }
+    @BeforeEach
+    public void setup(){
+        BDDMockito.when(clientRepository.findAll()).thenReturn(ClientUtil.createClientList());
+        BDDMockito.when(clientRepository.findAll(ArgumentMatchers.any(PageRequest.class))).thenReturn(new PageImpl<>(List.of(ClientUtil.createClient())));
+    }
 
     @Test
     @DisplayName("")
@@ -60,26 +58,5 @@ class ClientServiceTest {
 
     @Test
     void updateClientData() {
-    }
-
-    public static void main(String[] args) {
-        String price1 = "1.000,00";
-        String price2 = "20.000,00";
-
-        String price1WithoutComma = price1.replace(",", "");
-        String priceWithPoint = "";
-        String[] thousandPointSeparated = price1WithoutComma.split("\\.");
-        String restOfPrice = thousandPointSeparated[1];
-        String thousandPoint = thousandPointSeparated[0];
-
-
-
-
-        priceWithPoint = thousandPoint + "." + restOfPrice;
-        BigDecimal finalPrice = new BigDecimal(price1WithoutComma);
-        finalPrice.setScale(2, BigDecimal.ROUND_CEILING);
-
-        System.out.println(finalPrice);
-
     }
 }

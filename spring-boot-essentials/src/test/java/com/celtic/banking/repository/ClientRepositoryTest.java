@@ -85,26 +85,26 @@ public class ClientRepositoryTest {
         assertThat(updatedClient.getCpf()).isNotEqualTo(ClientUtil.createClient().getCpf());
     }
 
-//    @Test
-//    @DisplayName("Find all Clients test")
-//    public void givenClients_whenFindAllClients_thenReturn(){
-//        List<Client> findAllClients = clientRepository.saveAll(ClientUtil.createClientList());
-//
-//        assertThat(findAllClients).isNotNull();
-//        assertThat(findAllClients).size().isEqualTo(2);
-//    }
+    @Test
+    @DisplayName("Find all Clients test")
+    public void givenClients_whenFindAllClients_thenReturn(){
+        List<Client> findAllClients = clientRepository.saveAll(ClientUtil.createClientList());
 
-//    @Test
-//    @DisplayName("Find Client by first name test")
-//    public void givenAName_whenFindClientByName_thenReturn(){
-//        clientRepository.saveAll(ClientUtil.createClientList());
-//
-//        Client foo = clientRepository.findByFirstName("Foo");
-//
-//        assertThat(foo).isNotNull();
-//
-//        assertThat(foo.getFirstName()).isEqualTo("Foo");
-//    }
+        assertThat(findAllClients).isNotNull();
+        assertThat(findAllClients).size().isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Find Client by first name test")
+    public void givenAName_whenFindClientByName_thenReturn(){
+        clientRepository.saveAll(ClientUtil.createClientList());
+
+        Client foo = clientRepository.findByFirstName("Foo");
+
+        assertThat(foo).isNotNull();
+
+        assertThat(foo.getFirstName()).isEqualTo("Foo");
+    }
 
     @Test
     @DisplayName("Delete Client test")
