@@ -1,7 +1,6 @@
 package com.celtic.banking.service;
 
 import com.celtic.banking.domain.Client;
-import com.celtic.banking.mapping.ClientMapper;
 import com.celtic.banking.mapping.ClientResponseMapper;
 import com.celtic.banking.repository.ClientRepository;
 import com.celtic.banking.request.ClientRequest;
@@ -86,7 +85,7 @@ public class ClientService {
     public void deleteClient(Long id) {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found for id."));
-        clientRepository.deleteById(id);
+        clientRepository.deleteById(client.getId());
     }
 
     public ClientResponse updateClientData(ClientRequest clientRequest) {
