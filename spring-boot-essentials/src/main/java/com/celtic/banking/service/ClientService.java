@@ -16,52 +16,23 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 @Service
 @RequiredArgsConstructor
 public class ClientService {
     private final ClientRepository clientRepository;
 
     public List<ClientResponse> listClients() {
-        List<Client> clients = clientRepository.findAll();
-        List<ClientResponse> clientResponseList = new ArrayList<>();
-
-        clients.forEach(client -> {
-            ClientResponse response = ClientResponse.builder()
-                    .id(client.getId())
-                    .firstName(client.getFirstName())
-                    .lastName(client.getLastName())
-                    .cpf(client.getCpf())
-                    .build();
-
-            clientResponseList.add(response);
-        });
-
-        return clientResponseList;
+        return ClientResponseMapper.mapToClientResponseList(clientRepository.findAll());
     }
 
     public Page<ClientResponse> listClients(Pageable page) {
-        Page<Client> clients = clientRepository.findAll(page);
-        List<ClientResponse> clientResponseList = new ArrayList<>();
-
-        clients.forEach(client -> {
-            ClientResponse response = ClientResponse
-                    .builder()
-                    .id(client.getId())
-                    .firstName(client.getFirstName())
-                    .lastName(client.getLastName())
-                    .cpf(client.getCpf())
-                    .build();
-            clientResponseList.add(response);
-        });
-        return new PageImpl<>(clientResponseList);
+        return new PageImpl<>(ClientResponseMapper.mapToClientResponseList(clientRepository.findAll()));
     }
 
     public ClientResponse findClientById(Long id){
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found for id."));
-        return ClientResponseMapper.INSTANCE.mapToClientResponse(client);
+        return ClientResponseMapper.mapToClientResponse(client);
     }
 
     public ClientResponse createClient(ClientRequest clientRequest) {
@@ -96,8 +67,11 @@ public class ClientService {
         client.setFirstName(clientRequest.getFirstName());
         client.setLastName(clientRequest.getLastName());
 
-        return ClientResponseMapper.INSTANCE.mapToClientResponse(clientRepository.save(client));
+        return ClientResponseMapper.mapToClientResponse(clientRepository.save(client));
     }
 
 
+    public ClientResponse findByFirstName(String name) {
+        return ClientResponseMapper.mapToClientResponse(clientRepository.findByFirstName(name));
+    }
 }

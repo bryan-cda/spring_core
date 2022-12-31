@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @RequestMapping("celtic-banking/clients")
 @RestController
@@ -29,6 +32,11 @@ public class ClientController {
     @GetMapping
     public ResponseEntity<List<ClientResponse>> listClients(){
         return ResponseEntity.ok(clientService.listClients());
+    }
+
+    @GetMapping("/name")
+    public ClientResponse findClientByName(@RequestParam (name = "firstName") String firstName){
+       return clientService.findByFirstName(firstName);
     }
 
     @GetMapping("/all")

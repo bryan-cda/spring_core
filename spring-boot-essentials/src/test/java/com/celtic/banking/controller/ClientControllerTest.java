@@ -17,14 +17,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.util.Arrays.asList;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @Slf4j
 class ClientControllerTest {
-
     @InjectMocks
     private ClientController clientController;
 
@@ -34,48 +36,47 @@ class ClientControllerTest {
     @BeforeEach
     private void setup(){
         when(clientService.listClients(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientResponsePageable());
-
         when(clientService.listClients()).thenReturn(ClientUtil.createClientResponseList());
-
         when(clientService.findClientById(ArgumentMatchers.anyLong())).thenReturn(ClientUtil.createClientResponse());
-
         when(clientService.createClient(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientResponse());
-
         when(clientService.updateClientData(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientUpdatedResponse());
-
         doNothing().when(clientService).deleteClient(ArgumentMatchers.anyLong());
+        when(clientService.findByFirstName(ArgumentMatchers.anyString())).thenReturn(ClientUtil.createClientResponse());
     }
 
     @Test
     @DisplayName("List all pageable client controller test")
     void givenCallToListClientEndpoint_whenTryToListPageWithAllClients_thenReturn() {
-        ResponseEntity<Page<ClientResponse>> clientsPage = clientController.listClients(null);
+        ResponseEntity<Page<ClientResponse>> pageOfClients = clientController.listClients(null);
 
-        assertThat(clientsPage.getBody())
+        assertThat(pageOfClients.getBody())
                 .doesNotContainNull()
                 .doesNotHaveDuplicates()
                 .hasSize(2)
                 .isNotEmpty()
                 .isNotNull();
 
-        assertThat(clientsPage.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(clientsPage.getBody().toList()).isNotEmpty();
-        assertThat(clientsPage.getBody().toList().get(0).getFirstName()).isEqualTo("Foo");
-        assertThat(clientsPage.getBody().toList().get(0).getLastName()).isEqualTo("Bar");
-        assertThat(clientsPage.getBody().toList().get(0).getCpf()).isEqualTo("111.111.111-11");
-        assertThat(clientsPage.getBody().toList().get(0).getId()).isEqualTo(1L);
+        ClientResponse clientResponse = pageOfClients.getBody().toList().get(0);
+
+        assertThat(pageOfClients.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(pageOfClients.getBody().toList()).isNotEmpty();
+        assertThat(clientResponse.getFirstName()).isEqualTo("Foo");
+        assertThat(clientResponse.getLastName()).isEqualTo("Bar");
+        assertThat(clientResponse.getCpf()).isEqualTo("111.111.111-11");
+        assertThat(clientResponse.getId()).isEqualTo(1L);
     }
 
     @Test
     @DisplayName("List all client controller test")
     void givenCallToListClientEndpoint_whenTryToListWithAllClients_thenReturn() {
-        assertThat(clientController.listClients()).isNotNull();
-        assertThat(clientController.listClients().getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(clientController.listClients().getBody()).isNotEmpty();
-        assertThat(clientController.listClients().getBody().get(0).getFirstName()).isEqualTo("Foo");
-        assertThat(clientController.listClients().getBody().get(0).getLastName()).isEqualTo("Bar");
-        assertThat(clientController.listClients().getBody().get(0).getCpf()).isEqualTo("111.111.111-11");
-        assertThat(clientController.listClients().getBody().get(0).getId()).isEqualTo(1L);
+        ResponseEntity<List<ClientResponse>> responseEntityOfClientResponse = clientController.listClients();
+        assertThat(responseEntityOfClientResponse).isNotNull();
+        assertThat(responseEntityOfClientResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntityOfClientResponse.getBody()).isNotEmpty();
+        assertThat(responseEntityOfClientResponse.getBody().get(0).getFirstName()).isEqualTo("Foo");
+        assertThat(responseEntityOfClientResponse.getBody().get(0).getLastName()).isEqualTo("Bar");
+        assertThat(responseEntityOfClientResponse.getBody().get(0).getCpf()).isEqualTo("111.111.111-11");
+        assertThat(responseEntityOfClientResponse.getBody().get(0).getId()).isEqualTo(1L);
     }
 
     @Test
@@ -112,23 +113,35 @@ class ClientControllerTest {
 
     @Test
     @DisplayName("Update client controller test")
-
     void givenCallToUpdateClientEndpoint_whenTryToUpdateClient_thenUpdateAndReturn() {
-        assertThat(clientController.createClient(null)).isNotNull();
-        assertThat(clientController.createClient(null).getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(clientController.createClient(null).getBody().getFirstName()).isEqualTo("Foo");
-        assertThat(clientController.createClient(null).getBody().getLastName()).isEqualTo("Bar");
-        assertThat(clientController.createClient(null).getBody().getCpf()).isEqualTo("000.000.000-00");
-        assertThat(clientController.createClient(null).getBody().getId()).isEqualTo(1L);
+        ResponseEntity<ClientResponse> client = clientController.createClient(null);
+        assertThat(client).isNotNull();
+        assertThat(client.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(client.getBody().getFirstName()).isEqualTo("Foo");
+        assertThat(client.getBody().getLastName()).isEqualTo("Bar");
+        assertThat(client.getBody().getCpf()).isEqualTo("000.000.000-00");
+        assertThat(client.getBody().getId()).isEqualTo(1L);
 
-        assertThat(clientController.updateClientData(null).getBody().getId()).isEqualTo(1L);
-        assertThat(clientController.updateClientData(null).getBody().getFirstName()).isEqualTo("Foo");
-        assertThat(clientController.updateClientData(null).getBody().getLastName()).isEqualTo("Bar");
-        assertThat(clientController.updateClientData(null).getBody().getCpf()).isEqualTo("111.111.111-11");
+        ResponseEntity<ClientResponse> updatedClientResponseResponseEntity = clientController.updateClientData(null);
+        assertThat(updatedClientResponseResponseEntity.getBody().getId()).isEqualTo(1L);
+        assertThat(updatedClientResponseResponseEntity.getBody().getFirstName()).isEqualTo("Foo");
+        assertThat(updatedClientResponseResponseEntity.getBody().getLastName()).isEqualTo("Bar");
+        assertThat(updatedClientResponseResponseEntity.getBody().getCpf()).isEqualTo("111.111.111-11");
 
         Assertions.assertThatCode(() -> clientController.updateClientData(null))
                 .doesNotThrowAnyException();
+        assertThat(updatedClientResponseResponseEntity).isEqualTo(HttpStatus.NO_CONTENT);
+    }
 
-        assertThat(clientController.updateClientData(null).getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    @Test
+    @DisplayName("Find client by name controller test")
+    void givenGenericName_whenTryToFindClientByName_thenReturn() {
+        ClientResponse wanted = clientController.findClientByName("John");
+        ClientResponse expected = ClientUtil.createClientResponse();
+        assertThat(wanted).isNotNull();
+        assertThat(wanted).isEqualTo(expected);
+        assertThat(wanted.getCpf()).isEqualTo(expected.getCpf());
+        assertThat(wanted.getFirstName()).isEqualTo(expected.getFirstName());
+        assertThat(wanted.getLastName()).isEqualTo(expected.getLastName());
     }
 }
