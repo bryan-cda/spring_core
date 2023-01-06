@@ -1,6 +1,7 @@
 package com.celtic.banking.service;
 
 import com.celtic.banking.domain.Client;
+import com.celtic.banking.mapping.ClientRequestMapper;
 import com.celtic.banking.mapping.ClientResponseMapper;
 import com.celtic.banking.repository.ClientRepository;
 import com.celtic.banking.request.ClientRequest;
@@ -13,7 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,45 +29,37 @@ public class ClientService {
         return new PageImpl<>(ClientResponseMapper.mapToClientResponseList(clientRepository.findAll()));
     }
 
-    public ClientResponse findClientById(Long id){
+    public Client findClientById(Long id){
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found for id."));
-        return ClientResponseMapper.mapToClientResponse(client);
+        return client;
     }
 
     public ClientResponse createClient(ClientRequest clientRequest) {
-        Client clientSaved = Client
-                .builder()
-                .cpf(clientRequest.getCpf())
-                .firstName(clientRequest.getFirstName())
-                .lastName(clientRequest.getLastName())
-                .build();
-        Client saved = clientRepository.save(clientSaved);
-
-        return ClientResponse
-                .builder()
-                .id(saved.getId())
-                .firstName(saved.getFirstName())
-                .lastName(saved.getLastName())
-                .cpf(saved.getCpf())
-                .build();
+        return ClientResponseMapper.mapToClientResponse(clientRepository.save(ClientRequestMapper.mapToClient(clientRequest)));
     }
 
     public void deleteClient(Long id) {
-        Client client = clientRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found for id."));
-        clientRepository.deleteById(client.getId());
+        clientRepository.deleteById(findClientById(id).getId());
     }
 
     public ClientResponse updateClientData(ClientRequest clientRequest) {
-        Client client = clientRepository.findById(clientRequest.getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Client not found."));
+        Client client = findClientById(clientRequest.getId());
 
+        Client updatedClient = findClientAndUpdateData(client, clientRequest);
+
+        clientRepository.save(updatedClient);
+
+        return ClientResponseMapper.mapToClientResponse(updatedClient);
+
+
+    }
+
+    public Client findClientAndUpdateData(Client client, ClientRequest clientRequest){
         client.setCpf(clientRequest.getCpf());
         client.setFirstName(clientRequest.getFirstName());
         client.setLastName(clientRequest.getLastName());
-
-        return ClientResponseMapper.mapToClientResponse(clientRepository.save(client));
+        return client;
     }
 
 

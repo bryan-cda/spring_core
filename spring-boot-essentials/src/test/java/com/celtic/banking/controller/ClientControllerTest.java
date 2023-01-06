@@ -12,6 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +22,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Arrays.asList;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
@@ -37,11 +41,12 @@ class ClientControllerTest {
     private void setup(){
         when(clientService.listClients(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientResponsePageable());
         when(clientService.listClients()).thenReturn(ClientUtil.createClientResponseList());
-        when(clientService.findClientById(ArgumentMatchers.anyLong())).thenReturn(ClientUtil.createClientResponse());
+        when(clientService.findClientById(ArgumentMatchers.anyLong())).thenReturn(ClientUtil.createClient());
         when(clientService.createClient(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientResponse());
         when(clientService.updateClientData(ArgumentMatchers.any())).thenReturn(ClientUtil.createClientUpdatedResponse());
         doNothing().when(clientService).deleteClient(ArgumentMatchers.anyLong());
         when(clientService.findByFirstName(ArgumentMatchers.anyString())).thenReturn(ClientUtil.createClientResponse());
+
     }
 
     @Test
@@ -84,7 +89,7 @@ class ClientControllerTest {
     void givenCallToFindClientByIdEndpoint_whenTryToFindClient_thenReturn() {
         ResponseEntity<ClientResponse> clientById = clientController.findClientById(1L);
         assertThat(clientById).isNotNull();
-        assertThat(clientById).isEqualTo(HttpStatus.OK);
+        assertThat(clientById.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(clientById.getBody().getFirstName()).isEqualTo("Foo");
         assertThat(clientById.getBody().getLastName()).isEqualTo("Bar");
         assertThat(clientById.getBody().getCpf()).isEqualTo("000.000.000-00");
@@ -106,9 +111,8 @@ class ClientControllerTest {
     @Test
     @DisplayName("Delete client controller test")
     void givenCallToDeleteClientEndpoint_whenTryToDelete_thenUpdateAndReturn() {
-        ResponseEntity responseEntity = clientController.deleteClient(1L);
-        assertThat(responseEntity).isNotNull();
-        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+        assertThatCode(() -> clientController.deleteClient(1L))
+                .doesNotThrowAnyException();
     }
 
     @Test
@@ -130,7 +134,7 @@ class ClientControllerTest {
 
         Assertions.assertThatCode(() -> clientController.updateClientData(null))
                 .doesNotThrowAnyException();
-        assertThat(updatedClientResponseResponseEntity).isEqualTo(HttpStatus.NO_CONTENT);
+        assertThat(updatedClientResponseResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
@@ -143,5 +147,19 @@ class ClientControllerTest {
         assertThat(wanted.getCpf()).isEqualTo(expected.getCpf());
         assertThat(wanted.getFirstName()).isEqualTo(expected.getFirstName());
         assertThat(wanted.getLastName()).isEqualTo(expected.getLastName());
+    }
+    @Test
+    public void testAnswer(){
+        ClientService service = mock(ClientService.class);
+
+        Answer<Integer> answer = new Answer<Integer>() {
+            @Override
+            public Integer answer(InvocationOnMock invocationOnMock) throws Throwable {
+                List<ClientResponse> clientResponseList = invocationOnMock.getArgument(0);
+                return clientResponseList.size();
+            }
+        };
+        when(clientService.listClients()).thenAnswer(answer);
+        doAnswer(answer).when(clientService).listClients();
     }
 }

@@ -1,12 +1,14 @@
 package com.celtic.banking.controller;
 
 
+import com.celtic.banking.mapping.ClientResponseMapper;
 import com.celtic.banking.request.ClientRequest;
 import com.celtic.banking.request.ClientResponse;
 import com.celtic.banking.service.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,12 +18,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-
-import static java.util.Arrays.asList;
 
 @RequestMapping("celtic-banking/clients")
 @RestController
@@ -46,7 +47,7 @@ public class ClientController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ClientResponse> findClientById(@PathVariable Long id){
-        return ResponseEntity.ok(clientService.findClientById(id));
+        return ResponseEntity.ok(ClientResponseMapper.mapToClientResponse(clientService.findClientById(id)));
     }
 
     @PostMapping
@@ -55,9 +56,9 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteClient(@PathVariable Long id){
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteClient(@PathVariable Long id){
         clientService.deleteClient(id);
-        return ResponseEntity.noContent().build();
     }
 
     @PutMapping
