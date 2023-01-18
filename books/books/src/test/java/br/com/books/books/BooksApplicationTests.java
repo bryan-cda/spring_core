@@ -1,10 +1,10 @@
-package br.com.spring.webflux;
+package br.com.books.books;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebfluxApplicationTests {
+class BooksApplicationTests {
 
 	@Test
 	void contextLoads() {

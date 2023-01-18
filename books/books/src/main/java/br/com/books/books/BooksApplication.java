@@ -1,13 +1,13 @@
-package br.com.spring.webflux;
+package br.com.books.books;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class WebfluxApplication {
+public class BooksApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebfluxApplication.class, args);
+		SpringApplication.run(BooksApplication.class, args);
 	}
 
 }
