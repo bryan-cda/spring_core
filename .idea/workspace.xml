@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1ff67c42-736e-4754-88e7-1abff27bec80" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/.idea/sonarlint/issuestore/3/6/36a6b95671065e1c3ee169407138801f7a1abe39" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/.idea/sonarlint/issuestore/4/2/42135aa40ac3b2a9aa8ad4749ecd6d0ea3d249a8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/.idea/sonarlint/issuestore/7/9/7913ce71ed321f12c17611f6b98485057503649e" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/.idea/sonarlint/issuestore/7/9/79e5a7d1402de77a6e5407c3af934077713b4c0d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/.idea/sonarlint/issuestore/b/d/bdd94fb6868573f6a2cb29bcb4fa5bfb4cebb685" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/ServletInitializer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/SpringAwsMsApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/config/OpenApiConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/config/WebConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/controller/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/controller/BookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/controller/CalculatorController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/controller/PersonController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/converter/DozerConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/converter/NumberConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/exeption/CustomizedResponseEntityExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/exeption/EntityNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/exeption/InvalidJWTAuthenticationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/exeption/ResponseException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/exeption/UnsupportedMathOperationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/jwt/JWTConfigure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/jwt/JWTTokenFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/jwt/JWTTokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/model/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/model/Greeting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/model/Permission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/model/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/model/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/operations/MathOperations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/repository/BookRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/repository/PersonRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/repository/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/service/BookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/service/PersonService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/vo/AccountCredentialsVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/vo/BookVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/java/br/com/springawsms/vo/PersonVO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V1__CREATE_PERSON_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V2__PERSON_DUMB_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V3__CREATE_BOOK_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V4__DUMP_BOOK_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V5__CREATE_PERMISSION_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V6__DUMP_PERMISSION_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V7__CREATE_USER_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V8__DUMP_USER_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/main/resources/db/migration/V9__CREATE_N_TO_N_PERMISSION_TABLE.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/test/java/br/com/springawsms/SpringAwsMsApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-aws-ms-intellij/spring-aws-ms/src/test/java/br/com/springawsms/converter/DozerConverterTest.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="289nbpeyzHFVysmU7Qb1mhP74Wp" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/spring-aws-ms" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
+      <setting name="bbPath" value="" />
+      <setting name="parameters" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <setting name="workingDir" value="" />
+      <setting name="focusEditor" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <setting name="fixLineNumbers" value="false" />
+      <setting name="focusEditor" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="displayName" value="" />
+      <setting name="host" value="" />
+      <setting name="port" value="0" />
+      <setting name="replType" value="SOCKET" />
+      <setting name="configType" value="SPECIFY" />
+      <setting name="replPortFileType" value="STANDARD" />
+      <setting name="customPortFile" value="" />
+      <setting name="fixLineNumbers" value="false" />
+      <setting name="focusEditor" value="false" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ff67c42-736e-4754-88e7-1abff27bec80" name="Changes" comment="" />
+      <created>1650637743436</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650637743436</updated>
+      <workItem from="1650637745143" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
