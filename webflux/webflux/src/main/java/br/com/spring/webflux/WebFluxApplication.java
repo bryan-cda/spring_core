@@ -26,13 +26,11 @@ public class WebFluxApplication {
 		SpringApplication.run(WebFluxApplication.class, args);
 	}
 
-	@Scheduled(fixedDelay = 1000)
+	@Scheduled(fixedDelay = 60000)
 	public void generationData(){
 		log.info(format("Quote: [%s]", quoteRepository.findFirstBySymbolOrderByTimestampDesc("foo")
 				.map(this::transformData)
 				.orElseGet(this::initData)));
-
-
 		log.info(format("Timestamp: [%s]", LocalDateTime.now()));
 	}
 
